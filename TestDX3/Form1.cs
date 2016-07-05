@@ -33,7 +33,7 @@ namespace TestDX3
             verts[2].Normal = new Vector3(0.0f, 0.0f, -1.0f);
             verts[2].Color = System.Drawing.Color.White.ToArgb();
             //Triangle 1
-            CustomVertex.PositionNormalColored[] verts2 = new CustomVertex.PositionNormalColored[3];
+            /*CustomVertex.PositionNormalColored[] verts2 = new CustomVertex.PositionNormalColored[3];
             verts2[0].Position = new Vector3(0.0f, 0.0f, 0.0f);
             verts2[0].Normal = new Vector3(0.0f, 0.0f, -1.0f);
             verts2[0].Color = System.Drawing.Color.White.ToArgb();
@@ -64,16 +64,16 @@ namespace TestDX3
             verts4[1].Color = System.Drawing.Color.White.ToArgb();
             verts4[2].Position = new Vector3(0.0f, -2.0f, -1.0f);
             verts4[2].Normal = new Vector3(0.0f, 0.0f, -1.0f);
-            verts4[2].Color = System.Drawing.Color.White.ToArgb();
+            verts4[2].Color = System.Drawing.Color.White.ToArgb();*/
 
             device.Lights[0].Type = LightType.Point;
-            device.Lights[0].Position = new Vector3(5, 0, 0);
-            device.Lights[0].Diffuse = System.Drawing.Color.OrangeRed;
-            device.Lights[0].Attenuation0 = 1f;
-            device.Lights[0].Range = 10f;
+            device.Lights[0].Position = new Vector3(5, 5, 5);
+            device.Lights[0].Diffuse = System.Drawing.Color.White;
+            device.Lights[0].Attenuation0 = 100f;
+            device.Lights[0].Range = 10000f;
             device.Lights[0].Enabled = true;
             device.Lights[0].Update();
-
+            /*
             device.Lights[1].Type = LightType.Point;
             device.Lights[1].Position = new Vector3(0, 5, 0);
             device.Lights[1].Diffuse = System.Drawing.Color.LightBlue;
@@ -88,14 +88,14 @@ namespace TestDX3
             device.Lights[2].Attenuation0 = 1f;
             device.Lights[2].Range = 10f;
             device.Lights[2].Enabled = true;
-            device.Lights[2].Update();
+            device.Lights[2].Update();*/
 
             device.BeginScene();
             device.VertexFormat = CustomVertex.PositionNormalColored.Format;
             device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, verts);
-            device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, verts2);
+            /*device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, verts2);
             device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, verts3);
-            device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, verts4);
+            device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, verts4);*/
             device.EndScene();
             this.Invalidate();
             device.Present();
@@ -109,8 +109,8 @@ namespace TestDX3
         private void SetupCamera()
         {
             device.RenderState.CullMode = Cull.None;
-            device.Transform.Projection = Matrix.PerspectiveFovLH((float)Math.PI/4, this.Width / this.Height, 1.0f, 100.0f);
-            device.Transform.View = Matrix.LookAtLH(new Vector3(0,3, 5.0f), new Vector3(), new Vector3(0,1,0));
+            device.Transform.Projection = Matrix.PerspectiveFovLH((float)Math.PI/4, this.Width / this.Height, 1f, 100.0f);
+            device.Transform.View = Matrix.LookAtLH(new Vector3(0, 10, 5.0f), new Vector3(), new Vector3(0,1,0));
             device.RenderState.Lighting = true;
             /*device.Transform.World = Matrix.RotationZ((float)Math.PI / 6.0f);
             device.Transform.World = Matrix.RotationZ(angle / (float)Math.PI);*/
