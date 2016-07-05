@@ -12,8 +12,8 @@ namespace TestDX3
 {
     public partial class Form1 : Form
     {
-
         private float angle = 0;
+
         private Device device = null;
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
         {
@@ -33,13 +33,13 @@ namespace TestDX3
             verts[2].Color = System.Drawing.Color.White.ToArgb();
             device.Lights[0].Type = LightType.Point;
             device.Lights[0].Position = new Vector3(0,0,0);
-            device.Lights[0].Diffuse = System.Drawing.Color.Coral;
+            device.Lights[0].Diffuse = System.Drawing.Color.Yellow;
             device.Lights[0].Attenuation0 = 0.5f;
             device.Lights[0].Range = 1.5f;
-            device.Lights[0].Enabled = true;
+            device.Lights[0].Enabled = false;
             device.Lights[0].Update();
             device.BeginScene();
-            device.VertexFormat = CustomVertex.PositionColored.Format;
+            device.VertexFormat = CustomVertex.PositionNormalColored.Format;
             device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, verts);
             device.EndScene();
             this.Invalidate();
@@ -59,7 +59,7 @@ namespace TestDX3
             device.RenderState.Lighting = true;
             /*device.Transform.World = Matrix.RotationZ((float)Math.PI / 6.0f);
             device.Transform.World = Matrix.RotationZ(angle / (float)Math.PI);*/
-            device.Transform.World = Matrix.RotationAxis(new Vector3(angle / ((float)Math.PI * 2.0f), angle / ((float)Math.PI * 4.0f), angle / ((float)Math.PI * 6.0f)), angle / (float)Math.PI);
+            device.Transform.World = Matrix.RotationAxis(new Vector3(angle / ((float)Math.PI * 2.0f), angle / ((float)Math.PI * 4.0f), angle / ((float)Math.PI * 6.0f)), angle / (float)Math.PI);           
             angle += 0.05f;
             /*device.Transform.World = Matrix.RotationZ((System.Environment.TickCount/ 450.0f)/ (float)Math.PI);
             device.Transform.World = Matrix.RotationY((System.Environment.TickCount / 450.0f) / (float)Math.PI);*/
