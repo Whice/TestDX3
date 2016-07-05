@@ -21,6 +21,7 @@ namespace TestDX3
             1.0f, 0);
             //device.DeviceResizing += new CancelEventHandler(this.CancelResize);
             SetupCamera();
+            //Next
             CustomVertex.PositionNormalColored[] verts = new CustomVertex.PositionNormalColored[3];
             verts[0].Position=new Vector3(0.0f, 1.0f, 1.0f);
             verts[0].Normal = new Vector3(0.0f, 0.0f, -1.0f);
@@ -36,7 +37,7 @@ namespace TestDX3
             device.Lights[0].Diffuse = System.Drawing.Color.Yellow;
             device.Lights[0].Attenuation0 = 0.5f;
             device.Lights[0].Range = 1.5f;
-            device.Lights[0].Enabled = false;
+            device.Lights[0].Enabled = true;
             device.Lights[0].Update();
             device.BeginScene();
             device.VertexFormat = CustomVertex.PositionNormalColored.Format;
