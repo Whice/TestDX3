@@ -12,6 +12,8 @@ namespace TestDX3
 {
     public partial class Form1 : Form
     {
+
+        private float angle = 0;
         private Device device = null;
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
         {
@@ -40,9 +42,16 @@ namespace TestDX3
         }
         private void SetupCamera()
         {
-        device.Transform.Projection = Matrix.PerspectiveFovLH((float)Math.PI/4, this.Width / this.Height, 1.0f, 100.0f);
-        device.Transform.View = Matrix.LookAtLH(new Vector3(0,3, 5.0f), new Vector3(), new Vector3(0,1,0));
-        device.RenderState.Lighting = true;
+            device.RenderState.CullMode = Cull.None;
+            device.Transform.Projection = Matrix.PerspectiveFovLH((float)Math.PI/4, this.Width / this.Height, 1.0f, 100.0f);
+            device.Transform.View = Matrix.LookAtLH(new Vector3(0,3, 5.0f), new Vector3(), new Vector3(0,1,0));
+            device.RenderState.Lighting = false;
+            /*device.Transform.World = Matrix.RotationZ((float)Math.PI / 6.0f);
+            device.Transform.World = Matrix.RotationZ(angle / (float)Math.PI);*/
+            device.Transform.World = Matrix.RotationAxis(new Vector3(angle / ((float)Math.PI * 2.0f), angle / ((float)Math.PI * 4.0f), angle / ((float)Math.PI * 6.0f)), angle / (float)Math.PI);
+            angle += 0.01f;
+            /*device.Transform.World = Matrix.RotationZ((System.Environment.TickCount/ 450.0f)/ (float)Math.PI);
+            device.Transform.World = Matrix.RotationY((System.Environment.TickCount / 450.0f) / (float)Math.PI);*/
         }
         //private 
         /// <summary>
