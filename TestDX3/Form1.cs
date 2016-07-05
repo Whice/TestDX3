@@ -17,6 +17,7 @@ namespace TestDX3
         {
             device.Clear(ClearFlags.Target, System.Drawing.Color.Beige,
             1.0f, 0);
+            SetupCamera();
             CustomVertex.PositionColored[] verts = new CustomVertex.PositionColored[3];
             verts[0].Position=new Vector3(0.0f, 1.0f, 1.0f);
             verts[0].Color = System.Drawing.Color.Aqua.ToArgb();
@@ -36,6 +37,12 @@ namespace TestDX3
         {
             InitializeComponent();
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.Opaque, true);
+        }
+        private void SetupCamera()
+        {
+        device.Transform.Projection = Matrix.PerspectiveFovLH((float)Math.PI/4, this.Width / this.Height, 1.0f, 100.0f);
+        device.Transform.View = Matrix.LookAtLH(new Vector3(0,3, 5.0f), new Vector3(), new Vector3(0,1,0));
+        device.RenderState.Lighting = true;
         }
         //private 
         /// <summary>
