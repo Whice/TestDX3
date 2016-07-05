@@ -21,40 +21,81 @@ namespace TestDX3
             1.0f, 0);
             //device.DeviceResizing += new CancelEventHandler(this.CancelResize);
             SetupCamera();
-            //Triangle 1
+            //Triangle 0
             CustomVertex.PositionNormalColored[] verts = new CustomVertex.PositionNormalColored[3];
-            verts[0].Position=new Vector3(0.0f, 1.0f, 1.0f);
+            verts[0].Position=new Vector3(0.0f, 0.0f, 0.0f);
             verts[0].Normal = new Vector3(0.0f, 0.0f, -1.0f);
             verts[0].Color = System.Drawing.Color.White.ToArgb();
-            verts[1].Position=new Vector3(-1.0f, -1.0f, 1.0f);
+            verts[1].Position=new Vector3(1.0f, -2.0f, 0.5f);
             verts[1].Normal = new Vector3(0.0f, 0.0f, -1.0f);
             verts[1].Color = System.Drawing.Color.White.ToArgb();
-            verts[2].Position = new Vector3(1.0f, -1.0f, 1.0f);
+            verts[2].Position = new Vector3(-1.0f, -2.0f, 0.5f);
             verts[2].Normal = new Vector3(0.0f, 0.0f, -1.0f);
             verts[2].Color = System.Drawing.Color.White.ToArgb();
-            //Triangle 2
+            //Triangle 1
             CustomVertex.PositionNormalColored[] verts2 = new CustomVertex.PositionNormalColored[3];
-            verts2[0].Position = new Vector3(0.0f, 1.0f, 1.0f);
+            verts2[0].Position = new Vector3(0.0f, 0.0f, 0.0f);
             verts2[0].Normal = new Vector3(0.0f, 0.0f, -1.0f);
             verts2[0].Color = System.Drawing.Color.White.ToArgb();
-            verts2[1].Position = new Vector3(1.0f, 1.0f, 1.0f);
+            verts2[1].Position = new Vector3(1.0f, -2.0f, 0.5f);
             verts2[1].Normal = new Vector3(0.0f, 0.0f, -1.0f);
             verts2[1].Color = System.Drawing.Color.White.ToArgb();
-            verts2[2].Position = new Vector3(1.0f, -1.0f, 1.0f);
+            verts2[2].Position = new Vector3(0.0f, -2.0f, -1.0f);
             verts2[2].Normal = new Vector3(0.0f, 0.0f, -1.0f);
             verts2[2].Color = System.Drawing.Color.White.ToArgb();
+            //Triangle 2
+            CustomVertex.PositionNormalColored[] verts3 = new CustomVertex.PositionNormalColored[3];
+            verts3[0].Position = new Vector3(0.0f, 0.0f, 0.0f);
+            verts3[0].Normal = new Vector3(0.0f, 0.0f, -1.0f);
+            verts3[0].Color = System.Drawing.Color.White.ToArgb();
+            verts3[1].Position = new Vector3(-1.0f, -2f, 0.5f);
+            verts3[1].Normal = new Vector3(0.0f, 0.0f, -1.0f);
+            verts3[1].Color = System.Drawing.Color.White.ToArgb();
+            verts3[2].Position = new Vector3(0.0f, -2.0f, -1.0f);
+            verts3[2].Normal = new Vector3(0.0f, -0.0f, -1.0f);
+            verts3[2].Color = System.Drawing.Color.White.ToArgb();
+            //Triangle 3
+            CustomVertex.PositionNormalColored[] verts4 = new CustomVertex.PositionNormalColored[3];
+            verts4[0].Position = new Vector3(1.0f, -2.0f, 0.5f);
+            verts4[0].Normal = new Vector3(0.0f, 0.0f, -1.0f);
+            verts4[0].Color = System.Drawing.Color.White.ToArgb();
+            verts4[1].Position = new Vector3(-1.0f, -2.0f, 0.5f);
+            verts4[1].Normal = new Vector3(0.0f, 0.0f, -1.0f);
+            verts4[1].Color = System.Drawing.Color.White.ToArgb();
+            verts4[2].Position = new Vector3(0.0f, -2.0f, -1.0f);
+            verts4[2].Normal = new Vector3(0.0f, 0.0f, -1.0f);
+            verts4[2].Color = System.Drawing.Color.White.ToArgb();
 
             device.Lights[0].Type = LightType.Point;
-            device.Lights[0].Position = new Vector3(0,5,0);
-            device.Lights[0].Diffuse = System.Drawing.Color.Yellow;
-            device.Lights[0].Attenuation0 = 0.5f;
+            device.Lights[0].Position = new Vector3(5, 0, 0);
+            device.Lights[0].Diffuse = System.Drawing.Color.OrangeRed;
+            device.Lights[0].Attenuation0 = 1f;
             device.Lights[0].Range = 10f;
             device.Lights[0].Enabled = true;
             device.Lights[0].Update();
+
+            device.Lights[1].Type = LightType.Point;
+            device.Lights[1].Position = new Vector3(0, 5, 0);
+            device.Lights[1].Diffuse = System.Drawing.Color.LightBlue;
+            device.Lights[1].Attenuation0 = 1f;
+            device.Lights[1].Range = 10f;
+            device.Lights[1].Enabled = true;
+            device.Lights[1].Update();
+
+            device.Lights[2].Type = LightType.Point;
+            device.Lights[2].Position = new Vector3(0, 0, 5); ;
+            device.Lights[2].Diffuse = System.Drawing.Color.LightGreen;
+            device.Lights[2].Attenuation0 = 1f;
+            device.Lights[2].Range = 10f;
+            device.Lights[2].Enabled = true;
+            device.Lights[2].Update();
+
             device.BeginScene();
             device.VertexFormat = CustomVertex.PositionNormalColored.Format;
             device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, verts);
             device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, verts2);
+            device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, verts3);
+            device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, verts4);
             device.EndScene();
             this.Invalidate();
             device.Present();
@@ -73,10 +114,10 @@ namespace TestDX3
             device.RenderState.Lighting = true;
             /*device.Transform.World = Matrix.RotationZ((float)Math.PI / 6.0f);
             device.Transform.World = Matrix.RotationZ(angle / (float)Math.PI);*/
-            //device.Transform.World = Matrix.RotationAxis(new Vector3(angle / ((float)Math.PI * 2.0f), angle / ((float)Math.PI * 4.0f), angle / ((float)Math.PI * 6.0f)), angle / (float)Math.PI);           
-            //angle += 0.05f;
+            device.Transform.World = Matrix.RotationAxis(new Vector3(angle / ((float)Math.PI * 2.0f), angle / ((float)Math.PI * 4.0f), angle / ((float)Math.PI * 6.0f)), angle / (float)Math.PI);           
+            angle += 0.05f;
             //device.Transform.World = Matrix.RotationZ((System.Environment.TickCount/ 450.0f)/ (float)Math.PI);
-            device.Transform.World = Matrix.RotationX((System.Environment.TickCount / 450.0f) / (float)Math.PI);
+            //device.Transform.World = Matrix.RotationX((System.Environment.TickCount / 450.0f) / (float)Math.PI);
         }
         /*private void CancelResize(object sender, CancelEventArgs e)
         {
