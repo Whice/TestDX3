@@ -39,7 +39,7 @@ namespace TestDX3
             device.Lights[0].Enabled = true;
             device.Lights[0].Update();
             device.BeginScene();
-            device.VertexFormat = CustomVertex.PositionNormalColored.Format;
+            device.VertexFormat = CustomVertex.PositionColored.Format;
             device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, verts);
             device.EndScene();
             this.Invalidate();
